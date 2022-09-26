@@ -22,7 +22,7 @@ Secara umum, agar pengguna atau **_user_** bisa berinteraksi dengan sistem opera
    - Git bisa di-_download_ melalui situs resminya [di sini](https://git-scm.com/downloads). Tutorial instalasi juga bisa ditemukan di internet. Ada banyak sekali website dan video di Youtube yang membahasnya.
    - Setelah di-_download_ dan _install_, buka Git Bash dengan mengetikkan `git bash` di kotak pencarian windows.  
      ![search Git](images/gitBash.png)
-   - Selanjutnya akan terbuka jendela baru yang merupakan jendela dari Git Bash. Sampai proses ini kita sudah siap untuk menggunkan Git Bash.
+   - Selanjutnya akan terbuka jendela baru yang merupakan jendela dari Git Bash. Sampai proses ini kita sudah siap untuk menggunkan Git Bash.  
      ![Bash](images/tampilanCLI.png)
 3. **File System**
    - _File system_ adalah sebuah cara untuk mengatur bagaimana data disimpan di dalam sebuah sistem.
@@ -89,23 +89,82 @@ Secara umum, agar pengguna atau **_user_** bisa berinteraksi dengan sistem opera
      `git init` untuk membuat repository git dengan nama **.git**.
    - `git status` untuk melihat ada tidaknya perubahan pada direktori projek.
    - `git add <nama file>` atau `git add .` untuk menambahkan perubahan(_tracking_) dari **Working Directory** ke **Staging Area** pada Git.
-   - `git commit -m "pesan commit"` untuk menyimpan perubahan ke **Git Repository**.  
-   - `git log` untuk melihat catatan commit yang pernah dilakukan. 
+   - `git commit -m "pesan commit"` untuk menyimpan perubahan ke **Git Repository**.
+   - `git log` untuk melihat catatan commit yang pernah dilakukan.
+   - `git log --oneline` untuk melihat catatan commit dalam satu baris.
 
-3.
+3. **Push ke Github**
+   - Membuat repository di Github
+     1. Buka situs Github di <https://github.com/>. Pastikan untuk masuk ke Github dengan _login_ atau _sign up_ jika belum memilik akun.
+     2. Setelah masuk, pada bagian kiri klik _new_ untuk membuat repository baru.  
+        ![New Repo Github](images/newRepo.png)
+     3. Isi nama repository dan deskripsi singkatnya, pilih visibilty(public/private), dan terakhir klik **Create repository**
+   - `git branch -M main` untuk mengubah branch master menjadi branch main.
+   - `git remote add origin <link>` untuk menghubungkan _local repository_ dan _github repository_.
+   - `git push -u origin main` untuk melakukan push dari _local reposiroty_ ke _github repository_.
+4. **Cloning Github ke local**
+   - Melakukan clone repository dari Github ke local menggunakan command `git clone <link repository>`
 
-## Modul 2 - HTML
+## Modul 3 - HTML Dasar
 
-## Modul 3 - CSS
+- HTML adalah singkatan dari Hipertext Markup Language.
+- HTML bukanlah bahasa pemrograman. Namun, berfungsi untuk membuat kerangka dari website dan menampilkan konten didalamnya.
+- Tools utama untuk menggunakan HTML, yaitu :
+  1. Browser, seperti Google Chrome, Mozilla Firefox, Opera, Safari.
+  2. Code Editor, seperti Visual Studio Code, Sublime Text, Vim, dll.
+- Untuk menjalankan file HTML secara manual dapat dengan membuka langsung file HTML via Google Chrome
+- Untuk menjalankan file HTML secara otomatis dapat menggunakan ekstensi _live server_ yang ada di VS Code.
+- Beberapa ekstensi untuk mempermudah dalam membuat isi file HTML di VS Code diantaranya :
+  1. Live server
+  2. Prettier
+  3. Auto CLose Tag
+  4. Auto Rename Tag
+- HTML Structure :
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Website Nunung</title>
+    </head>
+    <body>
+      <h1 class="header">Halo ! Ini adalah Website pertamaku</h1>
+      <p>Namaku Nunung Ali Maulana</p>
+    </body>
+  </html>
+  ```
+- HTML elements terdiri dari 3 bagian utama, yaitu opening tag, content, dan closing tag.
+- Ada 2 jenis tag di HTMl, yaitu :  
+  _single tag_(tidak memiliki tag penutup), seperti tag `<br/>`, `<img src="" alt=""/>`,  
+  _double tag_(memilik tag penutup), seperti tag `<h1> </h1>`, `<p> </p>`, `<b> </b>`.
+- Tag populer yang sering digunakan di HTML diantaranya tag `<p></p>`, `<div></div>`, `<section></section>`, `<h1></h1>`, `<ol></ol>`,dan lain lain.
+- Semantic HTML adalah menggunakan dan menempatkan content sesuai dengan posisi dan kebutuhannya.
 
-## Modul 4 - Algoritma
+  ```html
+  <body>
+    <header>
+      <h1>Website Nunung Ali Maulana</h1>
+    </header>
 
-## Modul 5 - JavaScript Dasar
+    <nav>
+      <a href="#">Home</a> | <a href="#">About</a> |
+      <a href="#">Contact Us</a>
+    </nav>
 
-Peserta mampu memahami kenapa Git dan Github tools yang wajib digunakan
-Peserta mampu memahami perbedaan antara Git dan Github
-Peserta mampu memahami alur kerja dari Git dan Github
-Peserta mampu memahami dan membuat Repository Git
-Peserta mampu melakukan commit pada Git
-Peserta mampu mempublish aplikasi ke Github
-Peserta mampu melakukan cloning Github ke local
+    <article>
+      <h1>Halo ! Ini adalah website pertamaku</h1>
+      <p>Saya Nunung Ali Maulana dari Universitas Negeri Semarang</p>
+    </article>
+
+    <footer>Copyright &copy; 2022 by nunungalimaulana_</footer>
+  </body>
+  ```
+
+- Agar website yang sudah kita buat bisa diakses oleh orang lain melalui internet, maka harus dilakukan publish ke sebuah layanan hosting. Ada layanan yang gratis dan juga berbayar. Untuk menggunakan layanan gratis, salah satunya dapat menggunakan sebuah situs bernama [Netlify](https://www.netlify.com/). Setelah mendaftar dan masuk ke menu utama, kita dapat mengupload repository dari website kita yang ada di Github ke Netlify. Selainjutnya, setelah terdeploy, kita bisa mengubah nama domain melalui _setting_.
+
+## Modul 4 - CSS Dasar
+
+## Modul 5 - Algoritma
+
+## Modul 6 - JavaScript Dasar
