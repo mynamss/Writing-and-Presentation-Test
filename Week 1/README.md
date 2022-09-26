@@ -135,10 +135,12 @@ Secara umum, agar pengguna atau **_user_** bisa berinteraksi dengan sistem opera
   </html>
   ```
 - HTML elements terdiri dari 3 bagian utama, yaitu opening tag, content, dan closing tag.
+- HTML attributes adalah properti dari sebuah HTML element. Misalnya id, src, href, dll.
+- HTML comment berfungsi untuk memberikan penjelasan maksud dari baris kode yang kita buat. Comment ini tidak akan dieksekusi oleh sistem. Cara membuatnya dengan `<!--(isi comment) -->`.
 - Ada 2 jenis tag di HTMl, yaitu :  
   _single tag_(tidak memiliki tag penutup), seperti tag `<br/>`, `<img src="" alt=""/>`,  
   _double tag_(memilik tag penutup), seperti tag `<h1> </h1>`, `<p> </p>`, `<b> </b>`.
-- Tag populer yang sering digunakan di HTML diantaranya tag `<p></p>`, `<div></div>`, `<section></section>`, `<h1></h1>`, `<ol></ol>`,dan lain lain.
+- Tag populer yang sering digunakan di HTML diantaranya tag `<img src="" alt=""/>`, `<video></video>`, `<table></table>`, `<form></form>`,dan lain lain.
 - Semantic HTML adalah menggunakan dan menempatkan content sesuai dengan posisi dan kebutuhannya.
 
   ```html
@@ -161,10 +163,17 @@ Secara umum, agar pengguna atau **_user_** bisa berinteraksi dengan sistem opera
   </body>
   ```
 
-- Agar website yang sudah kita buat bisa diakses oleh orang lain melalui internet, maka harus dilakukan publish ke sebuah layanan hosting. Ada layanan yang gratis dan juga berbayar. Untuk menggunakan layanan gratis, salah satunya dapat menggunakan sebuah situs bernama [Netlify](https://www.netlify.com/). Setelah mendaftar dan masuk ke menu utama, kita dapat mengupload repository dari website kita yang ada di Github ke Netlify. Selainjutnya, setelah terdeploy, kita bisa mengubah nama domain melalui _setting_.
+- Agar website yang sudah kita buat bisa diakses oleh orang lain melalui internet, maka harus dilakukan publish atau deploy ke sebuah layanan hosting. Ada layanan yang gratis dan juga berbayar. Untuk menggunakan layanan gratis, salah satunya dapat menggunakan sebuah situs bernama [Netlify](https://www.netlify.com/). Setelah mendaftar dan masuk ke menu _site_, kita dapat mengupload repository dari website kita yang ada di Github ke Netlify. Selanjutnya, setelah terdeploy, kita bisa mengubah nama domain melalui menu _setting_.
 
 ## Modul 4 - CSS Dasar
 
 ## Modul 5 - Algoritma
 
 ## Modul 6 - JavaScript Dasar
+
+Peserta mampu memahami peran CSS pada web development
+Peserta mampu memahami beberapa cara menyisipkan CSS ke dalam HTML
+Peserta mampu memahami dan menggunakan sintaks dasar dari CSS
+Peserta mampu menerapkan styling CSS pada sebuah halaman HTML
+Peserta mampu memahami dan menggunakan metode responsive web design menggunakan CSS
+Peserta mampu memahami dan menggunakan flexbox
