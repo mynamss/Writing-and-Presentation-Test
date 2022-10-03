@@ -1,7 +1,5 @@
 # Writing and Presentation Test Week 1
 
-<!-- --- -->
-
 ## Modul 1 - Unix Command Line
 
 Secara umum, agar pengguna atau **_user_** bisa berinteraksi dengan sistem operasi komputer, ada program yang disebut dengan **_shell_**. Lalu, apa itu shell ? Ada berapa macamnya ? dan bagaimana cara mengaksesnya ?
