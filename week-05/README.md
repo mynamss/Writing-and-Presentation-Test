@@ -184,6 +184,186 @@
 
 ## Express Routing & Middleware
 
+- Express.js atau Express adalah _framework back end web application_ untuk Nodes.js yang dirilis sebagai _software open source_ dan gratis dibawah lisensi MIT.
+- Express dirancang untuk membangun web dan API.
+- Back end app adalah aplikasi yang berjalan di _server side_ yang bekerja untuk memberikan informasi berupa data sesuai _request_ dari _client_ / browser / front end app. Umumnya _server side app_ membuat REST API.
+- Kelebihan Express.js terletak pada fitur caching, support dengan Google V8 Engine, JavaScript, serta didukung oleh komunitas dan skalabilitas aplikasi yang baik.
+
+### REST API
+
+- RESTful API / REST API merupakan penerapan dari API (Application Programming Interface).
+- Sedangkan REST (Representional State Transfer) adalah sebuah arsitektur metode komunikasi yang menggunakan protokol HTTP untuk pertukaran data dimana metode ini sering diterapkan dalam pengembangan aplikasi.
+- RESTful API memiliki 4 komponen penting, yaitu:
+  - URL Design
+  - HTTP Verbs
+  - HTTP Response Code
+  - Format Response
+
+### Instalasi Express JS
+
+- Pastikan sudah menginstal Node Js, dan ketikkan command di bawah ini untuk menginstal express.js
+  > npm i express --save
+
+### Basic Syntax Express JS
+
+```javascript
+const express = require("express");
+const app = express();
+const PORT = 7000;
+//Route
+app.get("/", (req, res) => {
+  res.send("Hello Guys");
+});
+//Listen
+app.listen(port, () => {
+  console.log(`Express app running at http://localhost:${PORT}`);
+});
+```
+
+### Basic Routes
+
+- Routes adalah sebuah endpoint yang dapat diakses menggunakan URL di website. Di dalam routes terdapat method API, alamat, dan response yang akan dikeluarkan.
+
+```javascript
+//Route
+app.get("/", (req, res) => {
+  res.send("Hello Guys");
+});
+```
+
+- Untuk menjalankan aplikasi sederhana bisa dengan command "node [nama-app];"
+- Method dalam REST API seperti POST, PUT, PATCH, dan DELETE.
+- Di dalam route kita dapat mengirim response menggunakan parameter dari route express.js yaitu “res.Send()”
+- Status code : Dalam pengaplikasian back end application, kita sangat perlu memberikan status code sebagai informasi apakah route yang kita akses berjalan sebagaimana mestinya dan tidak terjadi error.
+- Query merupakan parameter yang digunakan untuk membantu menentukan tindakan yang lebih spesifik daripada hanya sekedar router biasa. Biasanya query ditaruh di akhir route dengan memberikan informasi diawali dengan “?” kemudian tedapat key dan data yang dapat ditindak lanjuti.
+  > Ex : “?q=hello&age=23”
+- Nested route digunakan ketika terdapat banyak route yang memiliki nama yang sama atau ingin membuat route yang lebih mendalam
+
+### Express Middleware
+
+![middleware](img/express-middleware.jpg)
+
+- Middleware function adalah sebuah fungsi yang memiliki akses ke object request (req), object response (res), dan sebuah fungsi next didalam request-response cycle.
+- Jika pada tahap mana pun middleware function menentukan bahwa suatu HTTP Request adalah request yang buruk dan salah, maka middleware function memiliki kemampuan untuk menghentikan request-response cycle.
+- Contoh middleware:
+  ```javascript
+  const logger = (req, res, next) => {
+    console.log("Loading masuk...");
+    next();
+  };
+  ```
+- Berlaku juga sebaliknya, jika middleware function menentukan suatu HTTP Request baik dan benar, maka middleware function memiliki kemampuan untuk melanjutkan request-response cycle ke proses selanjutnya.
+- Setelah sebuah HTTP Request melewati semua middleware yang ada di aplikasi, HTTP Request tersebut akan mencapai handler function.
+- Tugas Function Middleware :
+
+  - Menjalankan kode apapun.
+  - Memodifikasi Object Request dan Object Response
+  - Menghentikan request-response cycle.
+  - Melanjutkan ke middleware function selanjutnya atau ke handler function dalam suatu request response cycle.
+
+- Jenis Express Middleware Berdasarkan Cara Penggunaan
+  - Application Level Middleware
+  - Router Level Middleware
+  - Error Handling Middleware
+
+### Application Level Middleware
+
+- sebuah function middleware yang melekat ke instance object Application Express.
+- Penggunaannya dengan cara memanggil method app.use().
+- Application Level Middleware akan di jalankan setiap kali Express Application menerima sebuah HTTP Request.
+
+  ```javascript
+  const addRequestTime = function (req, res, next) {
+    req.addRequestTime = Date.now();
+    next();
+  };
+
+  app.use(addRequestTime);
+  ```
+
+### Router Level Middleware
+
+- Router Level Middleware adalah sebuah function middleware yang melekat ke instance object Router Express.
+- Penggunaannya dengan cara memanggil method express.Router().
+- Router Level Middleware hanya akan dijalankan setiap kali sebuah Express Router yang menggunakan middleware ini menerima sebuah HTTP Request, sedangan pada Router yang lain tidak akan dijalankan.
+
+### Error Handling Middleware
+
+- Error Handling mengacu kepada bagaimana cara sebuah Express Application menangkap dan memproses error yang terjadi, baik itu berupa kesalahan yang synchronous maupun asynchronous.
+- Express Application sudah menyediakan error handle function default, sehingga kita tidak perlu lagi membuat sendiri functionnya.
+- Error handle function default milik Express Application hanyalah kerangka functionnya saja, kita tetap harus menuliskan di dalam function ini bagaimana sebuah error akan di handle.
+- Error Handling Middleware digunakan pada Application Level Middleware
+
+  ```javascript
+  const express = require("express");
+  const userRouter = express.Router();
+  const adminRouter = express.Router();
+
+  const logUserAction = function (req, res, next) {
+    const username = req.body.username;
+    console.log(`Username ${username} acces the API.`);
+    next();
+  };
+
+  userRouter.use(logUserAction);
+
+  userRouter.get("/users", (req, res) => {
+    res.send("This is a user page");
+  });
+
+  userRouter.get("/admin", (req, res) => {
+    res.send("This is an admin page");
+  });
+  ```
+
+- \*Catatan
+  > Sebuah error handling middleware function harus memberikan 4 (empat) buah argument (err, req, res, next) agar bisa di deteksi oleh Express Application sebagai error handling middleware, sekalipun kita tidak akan pernah menggunakan function next dalam error handling middleware ini.
+- Jenis Express Middleware Berdasarkan Source Middleware Function
+
+  - Express Build-in Middleware :
+
+    - express.static() : memungkinkan sebuah express application melayani asset statis berupa file.
+    - express.json() : memungkinkan sebuah express application menerima HTTP Request yang membawa payload (data) dalam format JSON.
+    - express.urlEncoded() : memungkinkan sebuah express application menerima HTTP Request yang membawa payload (data) dalam format urlencoded.
+
+  - Third Party (custom) Middleware :
+  - Berikut adalah contoh third party middleware yang dikelola oleh Express JS Team :
+    - cors
+    - body-parser
+    - errorhandler
+    - morgan
+    - Multer
+  - Dan masih banyak lagi, list lengkap third party middleware yang dikelola Express JS Team bisa di lihat di sini : https://expressjs.com/en/resources/middleware.html
+
 ## Design Database with MySQL
 
+- Sebelum membuat database, ada baiknya kita menentukan dan membuat desain database terlebih dahulu agar database yang kita buat memiliki relasi yang baik dan tersusun dengan rapi.
+- Desain database, terdiri dari Entitas, Atribut, dan Relasi antar entitas.
+- Contoh kasus :
+  > Membuat desain database data film kesukaan dengan ketentuan :
+  >
+  > - Mahasiswa dapat menyukai lebih dari 1 film
+  > - Setiap film memiliki informasi terkait genre
+  > - Setiap film dapat memiliki banyak genre
+- Hasil dari ERM:
+  ![erm-db](img/erm-db.png)
+  Penjelasan:
+  - Entitas
+    1. Mahasiswa
+    2. Film
+    3. Genre
+    4. Fav_Film (tambahan)
+    5. Informasi (tambahan)
+  - Atribut (Bisa dilihat di gambar)
+  - Relasi:
+    - Mahasiswa dengan Film => Many to Many (sehingga menghasilkan entitas baru "Fav_Film" sebagai penghubung (_conjunction_).
+    - Film dengan Genre => Many to Many (menghasilkan entitas baru berupa "Informasi").
+
 ## Normalisasi Database
+
+- Normalisasi database adalah proses pengelompokan atribut data yang membentuk entitas sederhana, non-redundansi, fleksibel, dan mudah beradaptasi.
+- Hanya tipe “relational database” yang bisa di normalisasi.
+- Tahap normalisasi database yaitu :
+  - 1NF (Suatu tabel dikatakan 1NF jika dan hanya jika setiap setiap atribut dari data tersebut hanya memiliki nilai tunggal dalam satu baris.)
+  - 2NF (Syarat 2NF adalah tidak diperkenankan adanya partial “functional dependency” kepada primary key dalam sebuah tabel).
+  - 3NF (tidak diperkenankan adanya partial “transitive dependency” dalam sebuah tabel)
