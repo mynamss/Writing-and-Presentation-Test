@@ -147,8 +147,8 @@ Peserta mampu membuat authentication dan authorization -->
   const jwt = require("jsonwebtoken");
 
   const users = [
-    { id: 1, email: "dollong@gmail.com", password: "123" },
-    { id: 2, email: "kiki@gmail.com", password: "123" },
+    { id: 1, email: "ali@gmail.com", password: "123" },
+    { id: 2, email: "maulana@gmail.com", password: "123" },
   ];
 
   const KEY = "asdfjsdaklf234234";
